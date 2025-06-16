@@ -1,0 +1,75 @@
+﻿<Properties StartupConfiguration="{DDBCB4FB-E6C5-4925-8794-C244BC2F2F47}|https">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.OrderService PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.ItemProperties.Tests FirstBuild="True" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints />
+  <MonoDevelop.Ide.Workbench ActiveDocument="OrderService/Program.cs">
+    <Files>
+      <File FileName="ApiGateway/Program.cs" Line="125" Column="1" />
+      <File FileName="OrderService/Dockerfile" Line="20" Column="1" />
+      <File FileName="PaymentsService/Dockerfile" Line="27" Column="26" />
+      <File FileName="ApiGateway/Dockerfile" Line="14" Column="1" />
+      <File FileName="OrderService/appsettings.json" Line="19" Column="1" />
+      <File FileName="PaymentsService/appsettings.json" Line="19" Column="1" />
+      <File FileName="ApiGateway/appsettings.json" Line="7" Column="24" />
+      <File FileName="OrderService/Program.cs" Line="43" Column="1" />
+      <File FileName="PaymentsService/Program.cs" Line="86" Column="1" />
+      <File FileName="OrderService/Consumers/PaymentResultConsumer.cs" Line="16" Column="18" />
+      <File FileName="OrderService/Controllers/OrdersController.cs" Line="18" Column="1" />
+      <File FileName="OrderService/Data/OrdersDbContext.cs" Line="15" Column="1" />
+      <File FileName="OrderService/Migrations/20250604232406_Init.cs" Line="1" Column="1" />
+      <File FileName="OrderService/Models/Order.cs" Line="22" Column="1" />
+      <File FileName="OrderService/Models/OutboxMessage.cs" Line="17" Column="1" />
+      <File FileName="OrderService/Properties/launchSettings.json" Line="20" Column="4" />
+      <File FileName="OrderService/Services/OutboxPublisherService.cs" Line="19" Column="6" />
+      <File FileName="PaymentsService/Consumers/OrderCreatedConsumer.cs" Line="24" Column="19" />
+      <File FileName="PaymentsService/Controllers/AccountsController.cs" Line="140" Column="1" />
+      <File FileName="PaymentsService/Data/PaymentsDbContext.cs" Line="34" Column="1" />
+      <File FileName="PaymentsService/Models/Account.cs" Line="25" Column="1" />
+      <File FileName="PaymentsService/Models/InboxMessage.cs" Line="18" Column="1" />
+      <File FileName="PaymentsService/Models/OutboxMessage.cs" Line="16" Column="1" />
+      <File FileName="PaymentsService/Properties/launchSettings.json" Line="28" Column="25" />
+      <File FileName="PaymentsService/Services/OutboxPublisherService.cs" Line="25" Column="23" />
+      <File FileName="PaymentsService/Services/PaymentProcessorService.cs" Line="30" Column="10" />
+      <File FileName="Shared/Contracts/Messages.cs" Line="21" Column="1" />
+      <File FileName="PaymentsService/Migrations/PaymentsDbContextModelSnapshot.cs" Line="19" Column="25" />
+      <File FileName="PaymentsService/Migrations/20250609144754_MakeRowVersionNullable.cs" Line="41" Column="1" />
+      <File FileName="PaymentsService/Migrations/20250609144754_MakeRowVersionNullable.Designer.cs" Line="97" Column="8" />
+      <File FileName="PaymentsService/Migrations/20250608141818_InitInboxMessages.cs" Line="20" Column="28" />
+      <File FileName="PaymentsService/Migrations/20250608141818_InitInboxMessages.Designer.cs" Line="20" Column="10" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ECommerceSystem" expanded="True">
+            <Node name="ApiGateway" expanded="True" />
+            <Node name="OrderService" expanded="True">
+              <Node name="Consumers" expanded="True" />
+              <Node name="Controllers" expanded="True" />
+              <Node name="Data" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Services" expanded="True" />
+              <Node name="Program.cs" selected="True" />
+            </Node>
+            <Node name="PaymentsService" expanded="True">
+              <Node name="Consumers" expanded="True" />
+              <Node name="Controllers" expanded="True" />
+              <Node name="Data" expanded="True" />
+              <Node name="Migrations" expanded="True">
+                <Node name="20250608141818_InitInboxMessages.cs" expanded="True" />
+                <Node name="20250609144754_MakeRowVersionNullable.cs" expanded="True" />
+              </Node>
+              <Node name="Models" expanded="True" />
+              <Node name="Services" expanded="True" />
+            </Node>
+            <Node name="Shared" expanded="True">
+              <Node name="Contracts" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+</Properties>

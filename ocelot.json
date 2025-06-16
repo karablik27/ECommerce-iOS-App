@@ -1,0 +1,57 @@
+{
+  "Routes": [
+    // ───── Orders ─────
+    {
+      "DownstreamPathTemplate": "/orders",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{ "Host": "orderservice", "Port": 80 }],
+      "UpstreamPathTemplate": "/orders",
+      "UpstreamHttpMethod": [ "POST", "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/orders/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{ "Host": "orderservice", "Port": 80 }],
+      "UpstreamPathTemplate": "/orders/{everything}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ]
+    },
+
+    // ───── Payments ─────
+    {
+      "DownstreamPathTemplate": "/api/Accounts/{userId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{ "Host": "paymentservice", "Port": 80 }],
+      "UpstreamPathTemplate": "/api/Accounts/{userId}",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Accounts/{userId}/deposit/{amount}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{ "Host": "paymentservice", "Port": 80 }],
+      "UpstreamPathTemplate": "/api/Accounts/{userId}/deposit/{amount}",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Accounts/{userId}/balance",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{ "Host": "paymentservice", "Port": 80 }],
+      "UpstreamPathTemplate": "/api/Accounts/{userId}/balance",
+      "UpstreamHttpMethod": [ "GET" ]
+    }
+  ],
+
+  "SwaggerEndPoints": [
+    {
+      "Key": "orderservice",
+      "Version": "v1",
+      "Url": "http://orderservice/swagger/v1/swagger.json"
+    },
+    {
+      "Key": "paymentservice",
+      "Version": "v1",
+      "Url": "http://paymentservice/swagger/v1/swagger.json"
+    }
+  ],
+
+  "GlobalConfiguration": { "RouteIsCaseSensitive": false }
+}

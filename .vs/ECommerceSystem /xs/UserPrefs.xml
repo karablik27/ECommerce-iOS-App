@@ -1,0 +1,42 @@
+﻿<Properties StartupConfiguration="{DDBCB4FB-E6C5-4925-8794-C244BC2F2F47}|https">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Shared/Contracts/Messages.cs">
+    <Files>
+      <File FileName="OrderService/Models/Order.cs" Line="18" Column="20" />
+      <File FileName="OrderService/Models/OutboxMessage.cs" Line="17" Column="1" />
+      <File FileName="OrderService/Data/OrdersDbContext.cs" Line="7" Column="6" />
+      <File FileName="OrderService/Program.cs" Line="18" Column="2" />
+      <File FileName="OrderService/appsettings.json" Line="13" Column="1" />
+      <File FileName="OrderService/Controllers/WeatherForecastController.cs" Line="11" Column="2" />
+      <File FileName="OrderService/Services/OutboxPublisherService.cs" Line="20" Column="17" />
+      <File FileName="OrderService/Consumers/PaymentResultConsumer.cs" Line="17" Column="10" />
+      <File FileName="PaymentsService/Models/Account.cs" Line="23" Column="1" />
+      <File FileName="PaymentsService/Data/PaymentsDbContext.cs" Line="24" Column="1" />
+      <File FileName="PaymentsService/Controllers/AccountsController.cs" Line="22" Column="21" />
+      <File FileName="PaymentsService/Program.cs" Line="27" Column="10" />
+      <File FileName="PaymentsService/Models/InboxMessage.cs" Line="18" Column="1" />
+      <File FileName="PaymentsService/Models/OutboxMessage.cs" Line="16" Column="1" />
+      <File FileName="PaymentsService/Services/PaymentProcessorService.cs" Line="95" Column="22" />
+      <File FileName="PaymentsService/appsettings.json" Line="13" Column="1" />
+      <File FileName="PaymentsService/Services/OutboxPublisherService.cs" Line="59" Column="18" />
+      <File FileName="Shared/Contracts/Messages.cs" Line="10" Column="39" />
+      <File FileName="PaymentsService/Consumers/OrderCreatedConsumer.cs" Line="30" Column="26" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ECommerceSystem " expanded="True">
+            <Node name="Shared" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.OrderService PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.ItemProperties.Shared FirstBuild="True" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+</Properties>

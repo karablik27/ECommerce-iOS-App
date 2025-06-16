@@ -1,0 +1,113 @@
+services:
+#───────────────────────────────────────────────────────────────────────
+# PostgreSQL для OrderService
+#───────────────────────────────────────────────────────────────────────
+  postgres-orders:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: ordersdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - orders_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+#───────────────────────────────────────────────────────────────────────
+# PostgreSQL для PaymentsService
+#───────────────────────────────────────────────────────────────────────
+  postgres-payments:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: payments
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - payments_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+#───────────────────────────────────────────────────────────────────────
+# RabbitMQ + UI (:15672)
+#───────────────────────────────────────────────────────────────────────
+  rabbitmq:
+    image: rabbitmq:3-management
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+#───────────────────────────────────────────────────────────────────────
+# OrderService  (ASP.NET 7 / MassTransit)
+#───────────────────────────────────────────────────────────────────────
+  orderservice:
+    build:
+      context: .
+      dockerfile: OrderService/Dockerfile
+    image: ecommercesystem-orderservice:latest
+    depends_on:
+      postgres-orders:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_started
+    environment:
+      ASPNETCORE_URLS: "http://*:80"
+      ConnectionStrings__DefaultConnection: >
+        Host=postgres-orders;Port=5432;Database=ordersdb;Username=postgres;Password=postgres
+    ports:
+      - "5001:80"
+    restart: unless-stopped
+
+#───────────────────────────────────────────────────────────────────────
+# PaymentsService  (ASP.NET 7 / MassTransit)
+#───────────────────────────────────────────────────────────────────────
+  paymentservice:
+    build:
+      context: .
+      dockerfile: PaymentsService/Dockerfile
+    image: ecommercesystem-paymentservice:latest
+    depends_on:
+      postgres-payments:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_started
+    environment:
+      ASPNETCORE_URLS: "http://*:80"
+      ConnectionStrings__DefaultConnection: >
+        Host=postgres-payments;Port=5432;Database=payments;Username=postgres;Password=postgres
+    ports:
+      - "5002:80"
+    restart: unless-stopped
+
+#───────────────────────────────────────────────────────────────────────
+# API-Gateway  (Ocelot)
+#───────────────────────────────────────────────────────────────────────
+  apigateway:
+    build:
+      context: .
+      dockerfile: ApiGateway/Dockerfile
+    image: ecommercesystem-apigateway:latest
+    depends_on:
+      orderservice:
+        condition: service_started
+      paymentservice:
+        condition: service_started
+    environment:
+      ASPNETCORE_URLS: "http://*:80"
+    ports:
+      - "5003:80"
+    restart: unless-stopped
+
+
+#───────────────────────────────────────────────────────────────────────
+volumes:
+  orders_data:
+  payments_data:
