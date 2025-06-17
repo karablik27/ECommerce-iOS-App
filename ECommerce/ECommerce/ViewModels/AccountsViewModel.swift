@@ -9,7 +9,7 @@ final class AccountsViewModel: ObservableObject {
     @Published var accounts: [BankAccount] = []
     @Published var selectedAccount: BankAccount?
     @Published var isLoading = false
-    
+
     var userIds: [String] {
         accounts.map(\.userId)
     }
@@ -24,12 +24,6 @@ final class AccountsViewModel: ObservableObject {
         var saved = UserDefaults.standard.stringArray(forKey: savedAccountsKey) ?? []
         guard !saved.contains(userId) else { return }
         saved.append(userId)
-        UserDefaults.standard.set(saved, forKey: savedAccountsKey)
-    }
-
-    private func removeUserId(_ userId: String) {
-        var saved = UserDefaults.standard.stringArray(forKey: savedAccountsKey) ?? []
-        saved.removeAll { $0 == userId }
         UserDefaults.standard.set(saved, forKey: savedAccountsKey)
     }
 
@@ -48,10 +42,7 @@ final class AccountsViewModel: ObservableObject {
                     do {
                         return try await self.accountService.getBalance(userId: userId)
                     } catch {
-                        print("Удаление невалидного userId '\(userId)' из UserDefaults")
-                        await MainActor.run {
-                            self.removeUserId(userId)
-                        }
+                        print("Не удалось загрузить аккаунт '\(userId)': \(error.localizedDescription)")
                         return nil
                     }
                 }
@@ -73,7 +64,6 @@ final class AccountsViewModel: ObservableObject {
             self.isLoading = false
         }
     }
-
 
     func createAccount(onError: @escaping (String?) -> Void) async {
         guard !userIdInput.isEmpty else {
