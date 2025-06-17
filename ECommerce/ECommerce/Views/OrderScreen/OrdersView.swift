@@ -29,14 +29,19 @@ struct OrdersView: View {
                     .padding(.top, 8)
 
                     if viewModel.isLoading && viewModel.orders.isEmpty {
-                        Spacer()
-                        ProgressView("Загрузка...")
-                        Spacer()
+                        VStack {
+                            ProgressView("Загрузка...")
+                                .progressViewStyle(CircularProgressViewStyle())
+                                .font(.headline)
+                        }
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                     } else if viewModel.orders.isEmpty {
-                        Spacer()
-                        Text("Нет заказов")
-                            .foregroundColor(.secondary)
-                        Spacer()
+                        VStack {
+                            Text("Нет заказов")
+                                .font(.headline)
+                                .foregroundColor(.secondary)
+                        }
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                     } else {
                         ScrollView {
                             LazyVStack(spacing: 12) {
@@ -62,10 +67,10 @@ struct OrdersView: View {
                             await viewModel.loadOrders()
                         }
                     }
+
                 }
                 .navigationBarHidden(true)
                 .sheet(isPresented: $showCreateOrder, onDismiss: {
-                    // 👉 после закрытия CreateOrderView пересоздай OrdersView
                     onOrderCreated()
                 }) {
                     CreateOrderView().environmentObject(viewModel)

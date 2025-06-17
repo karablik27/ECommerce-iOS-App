@@ -2,6 +2,7 @@ import SwiftUI
 
 struct AccountCardView: View {
     let account: BankAccount
+    @Environment(\.colorScheme) private var colorScheme
 
     var body: some View {
         HStack(spacing: 16) {
@@ -28,8 +29,17 @@ struct AccountCardView: View {
                 .foregroundColor(.gray)
         }
         .padding()
-        .background(Color(.systemBackground))
+        .background(
+            colorScheme == .dark
+                ? Color(.secondarySystemBackground)
+                : Color(.systemBackground)
+        )
         .cornerRadius(16)
-        .shadow(color: Color.black.opacity(0.15), radius: 8, x: 0, y: 4)
+        .shadow(
+            color: colorScheme == .dark
+                ? Color.black.opacity(0.3)
+                : Color.black.opacity(0.15),
+            radius: 8, x: 0, y: 4
+        )
     }
 }

@@ -3,6 +3,7 @@ import SwiftUI
 struct OrderCell: View {
     let order: Order
     let onTap: () -> Void
+    @Environment(\.colorScheme) private var colorScheme
 
     private func statusColor(for status: String) -> Color {
         switch status.uppercased() {
@@ -45,9 +46,18 @@ struct OrderCell: View {
         }
         .frame(maxWidth: .infinity)
         .padding()
-        .background(Color(.systemBackground))
+        .background(
+            colorScheme == .dark
+                ? Color(.secondarySystemBackground)
+                : Color(.systemBackground)
+        )
         .cornerRadius(16)
-        .shadow(color: Color.black.opacity(0.1), radius: 6, x: 0, y: 3)
+        .shadow(
+            color: colorScheme == .dark
+                ? Color.black.opacity(0.3)
+                : Color.black.opacity(0.1),
+            radius: 6, x: 0, y: 3
+        )
         .onTapGesture {
             onTap()
         }

@@ -24,9 +24,12 @@ struct AccountsView: View {
                 .padding(.top, 8)
 
                 if viewModel.accounts.isEmpty {
-                    Text("Нет доступных счетов.")
-                        .foregroundColor(.secondary)
-                        .padding()
+                    VStack {
+                        Text("Нет доступных счетов.")
+                            .foregroundColor(.secondary)
+                            .font(.headline)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
                     ScrollView {
                         LazyVStack(spacing: 12) {
